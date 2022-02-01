@@ -18,7 +18,7 @@ export default function Home() {
           ></Image>
         </div>
         {/* instruction text */}
-        <p className="text-white text-center">
+        <p className="text-white text-center text-lg">
           Try matching the WillowTree employee to their photo.
         </p>
         {/* submit button */}
