@@ -1,9 +1,26 @@
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { Button } from "../components/Button";
 import Head from "../components/Head";
 import Logo from "../public/new-game-logo.svg";
+import { get_all_profiles } from "../utils/new-game/profile";
 
 export default function Home() {
+
+  const router = useRouter();
+
+  const handle_start_game = () => {
+    // get all profiles
+    get_all_profiles().then(profiles => {
+      // save profiles to state
+      // route to next page
+      router.push('/the-new-game');
+    }, error => {
+      // handle error;
+      console.log(error)
+    })
+  }
+
   return (
     <div className="bg-new-game-dark-blue h-screen w-screen">
       <Head></Head>
@@ -22,7 +39,7 @@ export default function Home() {
           Try matching the WillowTree employee to their photo.
         </p>
         {/* submit button */}
-        <Button btn_text="Play!"></Button>
+        <Button btn_text="Play!" callback={handle_start_game}></Button>
       </section>
     </div>
   );
