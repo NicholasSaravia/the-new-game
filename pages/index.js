@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { Button } from "../components/Button";
-import Head from "../components/Head";
+import Head from "../components/layout/Head";
 import Logo from "../public/new-game-logo.svg";
 import { get_all_profiles } from "../utils/new-game/profile";
 
@@ -26,7 +26,7 @@ export default function Home() {
       <Head></Head>
       <section className="flex flex-col gap-16 h-full justify-center items-center p-4">
         {/* logo */}
-        <div className="h-40 md:h-60 lg:h-96 w-full relative">
+        <div className="h-72 md:h-96 lg:h-[462.76px] w-full relative">
           <Image
             src={Logo}
             layout="fill"
@@ -35,7 +35,7 @@ export default function Home() {
           ></Image>
         </div>
         {/* instruction text */}
-        <p className="text-white text-center text-lg">
+        <p className="text-white text-center text-2xl">
           Try matching the WillowTree employee to their photo.
         </p>
         {/* submit button */}
