@@ -11,10 +11,11 @@ export default function Home() {
 
   const handle_start_game = () => {
     // get all profiles
-    get_all_profiles().then(profiles => {
+    get_all_profiles().then(({success, profiles = []}) => {
+      console.log(profiles);
       // save profiles to state
       // route to next page
-      router.push('/the-new-game');
+      //router.push('/the-new-game');
     }, error => {
       // handle error;
       console.log(error)
