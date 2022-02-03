@@ -1,10 +1,25 @@
+import { data } from "autoprefixer";
+
 const PROFILE_URL = "https://namegame.willowtreeapps.com/api/v1.0/profiles";
 
 export const get_all_profiles = async () => {
-  return await fetch(PROFILE_URL).then(async data => {
-    const profiles = await data.json();
-    return profiles;
-  }).catch(error => {
-    return error.message
-  })
-}
+  const profile_fetch = await fetch(PROFILE_URL).catch((error) => {
+    throw new Error("request failed");
+  });
+
+  if (profile_fetch.ok) {
+    const profiles = await profile_fetch.json();
+    return {
+      success: true,
+      profiles,
+    };
+  } else {
+    throw new Error(
+      JSON.stringify({
+        success: false,
+        status: profile_fetch.status,
+        reason: profile_fetch.statusText,
+      })
+    );
+  }
+};
