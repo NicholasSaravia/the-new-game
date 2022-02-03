@@ -1,4 +1,3 @@
-import { data } from "autoprefixer";
 
 const PROFILE_URL = "https://namegame.willowtreeapps.com/api/v1.0/profiles";
 

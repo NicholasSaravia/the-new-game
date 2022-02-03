@@ -2,25 +2,34 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { Button } from "../components/Button";
 import Head from "../components/layout/Head";
+import { PROFILES } from "../data/local-storage-keys";
 import Logo from "../public/new-game-logo.svg";
 import { get_all_profiles } from "../utils/new-game/profile";
 
 export default function Home() {
-
   const router = useRouter();
 
   const handle_start_game = () => {
     // get all profiles
-    get_all_profiles().then(({success, profiles = []}) => {
-      console.log(profiles);
-      // save profiles to state
-      // route to next page
-      //router.push('/the-new-game');
-    }, error => {
-      // handle error;
-      console.log(error)
-    })
-  }
+    get_all_profiles().then(
+      ({ success, profiles = [] }) => {
+        // save profiles to local storage
+        localStorage.setItem(
+          PROFILES,
+          JSON.stringify({
+            length: profiles.length,
+            profiles,
+          })
+        );
+        // route to next page
+        router.push("/the-new-game");
+      },
+      (error) => {
+        // handle error;
+        console.log(error);
+      }
+    );
+  };
 
   return (
     <div className="bg-new-game-dark-blue h-screen w-screen">
